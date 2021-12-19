@@ -66,6 +66,7 @@ function MasonryList<T>(props: Props<T>): ReactElement {
     LoadingView,
     numColumns = 2,
     horizontal,
+    onScroll,
   } = props;
 
   const {style, ...propsWithoutStyle} = props;
@@ -89,6 +90,7 @@ function MasonryList<T>(props: Props<T>): ReactElement {
       }
       scrollEventThrottle={16}
       onScroll={({nativeEvent}: {nativeEvent: NativeScrollEvent}) => {
+        onScroll(nativeEvent);
         if (isCloseToBottom(nativeEvent, onEndReachedThreshold || 0.1))
           onEndReached?.();
       }}
